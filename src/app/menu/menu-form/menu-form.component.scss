@@ -1,0 +1,41 @@
+:host {
+  padding: 20px;
+  display: block;
+  max-width: 390px;
+}
+
+label {
+  display: block;
+}
+
+.title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.error {
+  color: red;
+}
+
+.color {
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  input:checked + span {
+    border: 1px solid #000;
+  }
+
+  span {
+    width: 10px;
+    height: 10px;
+    display: block;
+    border-radius: 100%;
+  }
+}

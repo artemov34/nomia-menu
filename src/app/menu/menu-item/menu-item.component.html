@@ -1,0 +1,32 @@
+<ng-container *ngIf="!item?.sale">
+  <ng-content *ngTemplateOutlet="itemTpl"></ng-content>
+  <ng-container *ngIf="item?.collapse">
+    <app-menu-item *ngFor="let item of item.sections" [item]="item"></app-menu-item>
+    <app-menu-item *ngFor="let item of item.items" [item]="item"></app-menu-item>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="item?.sale">
+  <ng-content *ngTemplateOutlet="itemTpl"></ng-content>
+</ng-container>
+
+<ng-template #itemTpl>
+  <div class="item">
+    <button [ngClass]="{ collapsed: item.collapse }" (click)="item.collapse = !item.collapse" *ngIf="item?.sections?.length || item?.items?.length" class="collapse">></button>
+    <button class="dropdown-link" (click)="openDropdown = true">...</button>
+    <div class="name">
+      <span>{{ item?.name }}</span>
+      <span *ngIf="item?.sale">{{ item.sale }} ₽</span>
+    </div>
+    <ng-content *ngTemplateOutlet="dropDownTpl"></ng-content>
+  </div>
+</ng-template>
+
+<ng-template #dropDownTpl>
+  <div class="dropdown" *ngIf="openDropdown" (clickOutside)="clickOutsideDropDown($event)">
+    <div *ngIf="!item?.sale" (click)="add(MenuItemType.item)"><button>Добавить позицию</button></div>
+    <div *ngIf="!item?.sale" (click)="add(MenuItemType.section)"><button>Добавить раздел меню</button></div>
+    <div><button (click)="edit(item.id)">Редактировать</button></div>
+    <div><button (click)="remove(item.id)">Удалить</button></div>
+  </div>
+</ng-template>

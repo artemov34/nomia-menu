@@ -1,0 +1,49 @@
+:host {
+  display: block;
+}
+
+app-menu-item {
+  padding-left: 20px;
+}
+
+.item {
+  padding: 10px;
+  background: #fff;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  display: flex;
+  position: relative;
+
+  .collapse {
+    margin-right: 10px;
+    transition: 0.2s all;
+
+    &.collapsed {
+      transform: rotate(90deg);
+    }
+  }
+
+  .dropdown-link {
+    margin-right: 10px;
+  }
+
+  .dropdown {
+    position: absolute;
+    z-index: 2;
+    top: 48px;
+    background: #f7faff;
+    box-shadow: 0px 8px 16px rgba(118, 144, 196, 0.3);
+    border-radius: 6px;
+
+    button {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .name {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+  }
+}

@@ -1,0 +1,38 @@
+<div class="title">
+  <span>{{ formTypeName }} {{ menuTypeName }} </span>
+  <button (click)="cancle()">Отмена</button>
+</div>
+
+<div *ngIf="form" [formGroup]="form">
+  <div class="field">
+    <label>Название</label>
+    <input type="text" formControlName="name" />
+    <div class="error" *ngIf="form?.get('name')?.hasError('required')"></div>
+  </div>
+
+  <div class="field" *ngIf="type === MenuItemType.item">
+    <label>Цена</label>
+    <input type="text" formControlName="sale" />
+    <div class="error" *ngIf="form?.get('sale')?.hasError('required')"></div>
+  </div>
+
+  <div class="field" *ngIf="type === MenuItemType.section">
+    <label>Раздел</label>
+    <select formControlName="parent">
+      <option value="0">Основной - первый уровень</option>
+    </select>
+    <div class="error" *ngIf="form?.get('parent')?.hasError('required')"></div>
+  </div>
+
+  <div class="field" *ngIf="type === MenuItemType.section">
+    <label>Цвет</label>
+    <label class="color">
+      <input type="radio" formControlName="color" value="red" />
+      <span style="background-color: red;"></span>
+    </label>
+  </div>
+
+  <br />
+
+  <button>{{ item ? 'Сохранить' : 'Добавить' }}</button>
+</div>
